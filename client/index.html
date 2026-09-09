@@ -1,0 +1,100 @@
+<!-- This file is AI generated -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Linear Transform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>Submit a file</h1>
+        <p class="lead">Drop a file below, or click to browse.</p>
+
+        <div id="drop-zone">
+            <input id="file-input" type="file" />
+            <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 16V4M12 4l-4 4M12 4l4 4" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="drop-label">Drag a file here</div>
+            <div class="drop-hint">or click to choose one</div>
+
+            <div class="file-readout">
+                <span class="file-name" id="file-name"></span>
+                <span class="file-size" id="file-size"></span>
+            </div>
+        </div>
+
+        <button id="submit-btn" disabled>Submit file</button>
+        <div id="status"></div>
+    </main>
+
+    <div id="viewer">
+        <div id="image-stage">
+            <img id="result-image" />
+            <div id="image-dimensions"></div>
+        </div>
+
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <h2>Linear Transform</h2>
+                <p>Apply 2D linear transformations sequentially to the original image.</p>
+            </div>
+
+            <div id="matrices-container">
+                <!-- JavaScript will inject matrices here using the template below -->
+            </div>
+
+            <div style="padding: 0 16px;">
+                <button id="add-matrix-btn"
+                    style="background: transparent; border: 1px dashed var(--muted); color: var(--text);">+ Add
+                    Matrix</button>
+            </div>
+
+            <button id="apply-btn">Apply transform</button>
+            <div id="transform-status"></div>
+
+            <button id="new-file-btn">Upload a different file</button>
+        </aside>
+    </div>
+
+    <!-- HTML Template for a Matrix Input Row -->
+    <template id="matrix-template">
+        <div class="expr-row">
+            <div class="expr-body">
+                <div class="expr-label-container"
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div class="expr-label" style="margin-bottom: 0;">Matrix</div>
+                    <button type="button" class="remove-matrix-btn"
+                        style="width: auto; margin: 0; padding: 4px 8px; font-size: 0.75rem; background: transparent; border: 1px solid var(--border); color: var(--muted);">Remove</button>
+                </div>
+                <div class="matrix-editor">
+                    <div class="matrix-bracket left"></div>
+                    <div class="matrix-grid">
+                        <input type="text" value="1" inputmode="text" />
+                        <input type="text" value="0" inputmode="text" />
+                        <input type="text" value="0" inputmode="text" />
+                        <input type="text" value="1" inputmode="text" />
+                    </div>
+                    <div class="matrix-bracket right"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="/dist/app.js" defer></script>
+</body>
+
+</html>

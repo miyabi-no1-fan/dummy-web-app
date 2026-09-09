@@ -1,0 +1,359 @@
+/* This file is AI generated */
+
+:root {
+    --ink: #14171a;
+    --surface: #1e2226;
+    --surface-raised: #262b30;
+    --border: #383f45;
+    --text: #edeef0;
+    --muted: #8b939b;
+    --accent: #e8b004;
+    --accent-dim: #7a5f0e;
+    --error: #e5674a;
+    --success: #5fb37c;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+main {
+    width: 100%;
+    max-width: 420px;
+    padding: 32px;
+}
+
+h1 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+}
+
+p.lead {
+    margin: 0 0 28px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+#drop-zone {
+    position: relative;
+    border: 1.5px dashed var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    padding: 36px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+#drop-zone:hover {
+    border-color: var(--muted);
+}
+
+#drop-zone.dragging {
+    border-color: var(--accent);
+    background: var(--surface-raised);
+}
+
+#drop-zone.has-file {
+    border-style: solid;
+    border-color: var(--accent-dim);
+}
+
+#file-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.drop-icon {
+    width: 28px;
+    height: 28px;
+    margin: 0 auto 14px;
+    color: var(--muted);
+}
+
+.drop-label {
+    font-size: 0.92rem;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.drop-hint {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.file-readout {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    text-align: left;
+}
+
+#drop-zone.has-file .file-readout {
+    display: flex;
+}
+
+#drop-zone.has-file .drop-icon,
+#drop-zone.has-file .drop-label,
+#drop-zone.has-file .drop-hint {
+    display: none;
+}
+
+.file-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-size {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    flex-shrink: 0;
+}
+
+button {
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #1a1500;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+    background: #fac321;
+}
+
+button:disabled {
+    background: var(--surface-raised);
+    color: var(--muted);
+    cursor: not-allowed;
+}
+
+#status {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    min-height: 1.2em;
+}
+
+#status.error {
+    color: var(--error);
+}
+
+#status.success {
+    color: var(--success);
+}
+
+#viewer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--ink);
+}
+
+#viewer.visible {
+    display: flex;
+}
+
+#image-stage {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+}
+
+#result-image {
+    flex: 1;
+    min-width: 0;
+    object-fit: contain;
+    background: var(--ink);
+}
+
+#image-dimensions {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    padding: 4px 8px;
+    background: rgba(20, 23, 26, 0.75);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+#sidebar {
+    width: 300px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    order: -1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: 20px 20px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.sidebar-header p {
+    margin: 6px 0 0;
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+.expr-row {
+    display: flex;
+    gap: 12px;
+    padding: 18px 16px 22px;
+    border-bottom: 1px solid var(--border);
+}
+
+.expr-index {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--surface-raised);
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-family: 'IBM Plex Mono', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.expr-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.expr-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.matrix-editor {
+    display: flex;
+    align-items: stretch;
+}
+
+.matrix-bracket {
+    width: 8px;
+    border: 2px solid var(--muted);
+}
+
+.matrix-bracket.left {
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.matrix-bracket.right {
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+}
+
+.matrix-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    padding: 6px 8px;
+    flex: 1;
+}
+
+.matrix-grid input {
+    width: 100%;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 8px 4px;
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.matrix-grid input::-webkit-outer-spin-button,
+.matrix-grid input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.matrix-grid input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+#apply-btn {
+    margin: 16px 16px 0;
+    width: auto;
+}
+
+#transform-status {
+    padding: 10px 16px 4px;
+    font-size: 0.8rem;
+    min-height: 1.2em;
+}
+
+#transform-status.error {
+    color: var(--error);
+}
+
+#transform-status.success {
+    color: var(--success);
+}
+
+#new-file-btn {
+    margin: auto 16px 16px;
+    width: auto;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+}
+
+#new-file-btn:hover {
+    background: transparent;
+    border-color: var(--muted);
+    color: var(--text);
+}

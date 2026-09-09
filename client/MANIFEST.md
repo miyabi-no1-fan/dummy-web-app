@@ -1,0 +1,1 @@
+This is the front-end side, all of them are just AI generated
