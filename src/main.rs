@@ -1,3 +1,15 @@
+/// The server address, `format!(http://{ADDRESS})` is the link to server
+const ADDRESS: &str = "localhost:9000";
+
+const MAX_BODY_BYTES: usize = 50 << 20;
+const CONCURRENCY_LIMIT: usize = 12;
+const REQUEST_TIMEOUT: Duration = Duration::from_secs(5);
+
+/// All image total size in bytes must not exceed this value.
+///
+/// This does not limit how many image you can have at a time.
+pub const IMAGE_LEN_LIMIT: usize = 1 << 30;
+
 use axum::{
     Router,
     error_handling::HandleErrorLayer,
@@ -17,22 +29,11 @@ use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
 mod transform;
 
-/// The server address, `format!(http://{ADDRESS})` is the link to server
-const ADDRESS: &str = "localhost:9000";
 const DIST_DIR: &str = "client/dist";
 const STYLE_CSS: &str = "client/style.css";
 async fn index_html() -> impl IntoResponse {
     Html(std::include_str!("../client/index.html"))
 }
-
-const MAX_BODY_BYTES: usize = 50 << 20;
-const CONCURRENCY_LIMIT: usize = 12;
-const REQUEST_TIMEOUT: Duration = Duration::from_secs(5);
-
-/// All image total size in bytes must not exceed this value.
-///
-/// This does not limit how many image you can have at a time.
-pub const IMAGE_LEN_LIMIT: usize = 1 << 30;
 
 #[tokio::main]
 async fn main() {
